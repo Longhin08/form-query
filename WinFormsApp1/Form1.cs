@@ -23,22 +23,20 @@ namespace WinFormsApp1
             if (param != "")
             {
 
-                DBconnection dbCredentials = new DBconnection();
-                dbCredentials.DataBase = "Your Database";
-                dbCredentials.Password = "Database Password";
-                dbCredentials.Username = "Database Username";
-                dbCredentials.Host = "Database Host";
-                dbCredentials.Port = "Database port";
+                // Instance your connection
+                DBconnection dbCredentials = new DBconnection("HOST_DATABASE", "PORT", "USERNAME", "PASSWORD", "DATABASE");
                 dbCredentials.CreateConnection();
                 var connection = dbCredentials.ConnectionString;
 
-
+                // Connecting to the database
                 using var conn = new NpgsqlConnection(connection);
+
+                //Trying to execute query
                 try
                 {
                     conn.Open();
 
-                    using var cmd = new NpgsqlCommand("Your SELECT", conn);
+                    using var cmd = new NpgsqlCommand("Your QUERY", conn);
                     using var adapter = new NpgsqlDataAdapter(cmd);
                     var result = cmd.ExecuteScalar();
                     DataTable dt = new DataTable();
