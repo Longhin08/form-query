@@ -8,8 +8,8 @@ namespace WinFormsApp1
 {
     class DBconnection
     {
-        public string connectionString;
 
+        public string ConnectionString;
         public string Host { get; set; }
         public string Port { get; set; }
         public string Username { get; set; }
@@ -18,7 +18,7 @@ namespace WinFormsApp1
 
         public void CreateConnection()
         {
-            connectionString = $"Host={Host};Port={Port};Username={Username};Password={Password};Database={DataBase}";
+            ConnectionString = $"Host={Host};Port={Port};Username={Username};Password={Password};Database={DataBase}";
         }
     };
 

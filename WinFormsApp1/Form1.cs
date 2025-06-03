@@ -24,14 +24,13 @@ namespace WinFormsApp1
             {
 
                 DBconnection dbCredentials = new DBconnection();
-
-                dbCredentials.DataBase = "postgres";
-                dbCredentials.Password = "OptzTech2025";
-                dbCredentials.Username = "postgres";
-                dbCredentials.Host = "192.168.50.160";
-                dbCredentials.Port = "5432";
+                dbCredentials.DataBase = "Your Database";
+                dbCredentials.Password = "Database Password";
+                dbCredentials.Username = "Database Username";
+                dbCredentials.Host = "Database Host";
+                dbCredentials.Port = "Database port";
                 dbCredentials.CreateConnection();
-                var connection = dbCredentials.connectionString;
+                var connection = dbCredentials.ConnectionString;
 
 
                 using var conn = new NpgsqlConnection(connection);
@@ -39,7 +38,7 @@ namespace WinFormsApp1
                 {
                     conn.Open();
 
-                    using var cmd = new NpgsqlCommand(@"SELECT DISTINCT fornecedor_cnpj, fornecedor_codigo_sap, fornecedor_nome, fornecedor_endereco, fornecedor_telefone, fornecedor_email, material_nome FROM importacao i WHERE material_codigo_sap = '30040866' AND fornecedor_cnpj IS NOT NULL AND fornecedor_codigo_sap IS NOT NULL AND fornecedor_nome IS NOT NULL;", conn);
+                    using var cmd = new NpgsqlCommand("Your SELECT", conn);
                     using var adapter = new NpgsqlDataAdapter(cmd);
                     var result = cmd.ExecuteScalar();
                     DataTable dt = new DataTable();
